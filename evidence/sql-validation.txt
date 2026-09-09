@@ -1,0 +1,80 @@
+﻿已将数据库上下文更改为 "TeaShopCourse"。
+已将数据库上下文更改为 "TeaShopCourse"。
+ProductID   ProductCode          ProductName                                                  CupSize    Price        IsActive
+----------- -------------------- ------------------------------------------------------------ ---------- ------------ --------
+        900 DEMO-TEMP            演示商品                                                         中杯                15.00        1
+PASS: product CRUD
+IngredientID IngredientName                                               Unit       OnHand         Reserved       Available      
+------------ ------------------------------------------------------------ ---------- -------------- -------------- ---------------
+           1 茶汤                                                           毫升               9450.000           .000        9450.000
+PASS: stock receipt rollback
+OrderID     OrderNo                        Channel    Fulfillment Status           GoodsAmount  DiscountAmount DeliveryFee  Payable       
+----------- ------------------------------ ---------- ----------- ---------------- ------------ -------------- ------------ --------------
+        900 DEMO-CRUD-ORDER                ONLINE     PICKUP      COMPLETED               18.00            .00          .00          18.00
+PASS: complete order / stock / payment / points flow, rolled back
+已将数据库上下文更改为 "TeaShopCourse"。
+PASS: recharge / coupon / balance payment / stock / delivery / points
+PASS: full refund / wallet reversal / coupon release / points reversal
+PASS: service demonstration rolled back
+已将数据库上下文更改为 "TeaShopCourse"。
+OrderNo                        Customer                                 EmployeeName                             ProductName                                                  CupSize    Quantity    UnitPrice    LineAmount              Payable       
+------------------------------ ---------------------------------------- ---------------------------------------- ------------------------------------------------------------ ---------- ----------- ------------ ----------------------- --------------
+DEMO-001                       测试会员甲                                    示例收银                                     原味奶茶                                                         中杯                   2        12.00                   24.00          24.00
+DEMO-002                       非会员                                      示例收银                                     原味奶茶                                                         大杯                   1        16.00                   16.00          16.00
+DEMO-003                       测试会员乙                                    示例收银                                     鲜奶茶                                                          中杯                   1        18.00                   18.00          18.00
+DEMO-004                       测试会员甲                                    示例收银                                     原味奶茶                                                         中杯                   1        12.00                   12.00          12.00
+OrderNo                        Rider                                    Status       PickedAt                               DeliveredAt                           
+------------------------------ ---------------------------------------- ------------ -------------------------------------- --------------------------------------
+DEMO-001                       示例骑手                                     DELIVERED                       2026-09-09 10:15:00                    2026-09-09 10:35:00
+MemberCode           CouponName                                                   MinimumAmount DiscountAmount
+-------------------- ------------------------------------------------------------ ------------- --------------
+M001                 满30减5                                                                30.00           5.00
+M002                 满20减3                                                                20.00           3.00
+SalesDate        OrderCount           GoodsTotal                               DiscountTotal                            DeliveryTotal                            ReceiptTotal                            
+---------------- -------------------- ---------------------------------------- ---------------------------------------- ---------------------------------------- ----------------------------------------
+      2026-09-09                    4                                    70.00                                     3.00                                     3.00                                    70.00
+ProductID   ProductName                                                  CupSize    Cups        GrossSales                              
+----------- ------------------------------------------------------------ ---------- ----------- ----------------------------------------
+          1 原味奶茶                                                         中杯                   3                                    36.00
+          2 原味奶茶                                                         大杯                   1                                    16.00
+          3 鲜奶茶                                                          中杯                   1                                    18.00
+MemberCode           Balance      LedgerBalance                            Difference                              
+-------------------- ------------ ---------------------------------------- ----------------------------------------
+M001                        88.00                                    88.00                                      .00
+M002                          .00                                      .00                                      .00
+IngredientID OnHand         LedgerStock                              Difference                              
+------------ -------------- ---------------------------------------- ----------------------------------------
+           1       8950.000                                 8950.000                                     .000
+           2       9350.000                                 9350.000                                     .000
+           3        995.000                                  995.000                                     .000
+IngredientID IngredientName                                               Unit       OnHand         Reserved       Available      
+------------ ------------------------------------------------------------ ---------- -------------- -------------- ---------------
+已将数据库上下文更改为 "TeaShopCourse"。
+PASS: seed totals / order items / wallet / points / stock / payments
+PASS: negative price rejected (547)
+PASS: negative stock rejected (547)
+PASS: over-reservation rejected (547)
+PASS: negative balance rejected (547)
+PASS: orphan detail rejected (547)
+PASS: duplicate product code rejected (2627)
+PASS: delete referenced product rejected (547)
+PASS: invalid coupon dates rejected (547)
+PASS: wrong coupon owner rejected (547)
+PASS: zero item quantity rejected (547)
+PASS: duplicate payment reference rejected (2627)
+PASS: invalid delivery time rejected (547)
+PASS: online anonymous order rejected (547)
+PASS: reuse active coupon rejected (2601)
+PASS: invalid wallet direction rejected (547)
+OrderID     OrderNo                        Status           Fulfillment LineNumber  ProductName                                                  CupSize    Quantity    Sugar      Temperature
+----------- ------------------------------ ---------------- ----------- ----------- ------------------------------------------------------------ ---------- ----------- ---------- -----------
+StockRows  
+-----------
+          3
+MenuRows   
+-----------
+          3
+PASS: authorized role access
+PASS: cashier balance write denied (229)
+PASS: maker member read denied (229)
+ALL TESTS PASSED

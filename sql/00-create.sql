@@ -1,0 +1,15 @@
+SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
+SET ANSI_PADDING ON;
+SET ANSI_WARNINGS ON;
+SET CONCAT_NULL_YIELDS_NULL ON;
+SET ARITHABORT ON;
+SET NUMERIC_ROUNDABORT OFF;
+GO
+-- Only creates a new course database. Never drops an existing database.
+USE master;
+GO
+IF DB_ID(N'TeaShopCourse') IS NULL EXEC(N'CREATE DATABASE TeaShopCourse');
+GO
+
+
